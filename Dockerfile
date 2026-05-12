@@ -8,6 +8,7 @@ RUN yarn install --frozen-lockfile
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY package.json yarn.lock ./
 COPY tsconfig*.json nest-cli.json eslint.config.js ./
 COPY src ./src
 RUN yarn build
