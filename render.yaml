@@ -1,0 +1,31 @@
+# Deploy do backend no Render via Docker.
+#
+# Passos:
+# 1. New + → Blueprint → conecte o repositório kaizen-test-backend.
+# 2. Defina as variáveis com `sync: false` no painel:
+#    - MONGODB_URI  → string de conexão do Mongo Atlas
+#    - CORS_ORIGIN  → URL do front no Vercel (ex.: https://kaizen-clicker.vercel.app)
+# 3. Após o primeiro deploy, copie a URL pública (ex.: https://kaizen-clicker-api.onrender.com)
+#    e configure VITE_API_URL no projeto Vercel.
+
+services:
+  - type: web
+    name: kaizen-clicker-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeploy: true
+    healthCheckPath: /scores/top
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: PORT
+        value: "3000"
+      - key: LOG_LEVEL
+        value: info
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        sync: false

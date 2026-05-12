@@ -1,0 +1,66 @@
+{
+  "persistence": {
+    "storageKey": "kaizen-clicker-save-v1",
+    "saveSchemaVersion": 1,
+    "maxOfflineHours": 8,
+    "historyLength": 120
+  },
+  "simulation": {
+    "msPerTick": 1000,
+    "basePiecesPerSecond": 1,
+    "initialDefectRatePct": 30,
+    "initialOeePct": 40,
+    "pctClampMin": 0,
+    "pctClampMax": 100,
+    "velocityFloor": 0.05,
+    "jitDefectThresholdPct": 5,
+    "referenceOeeForThroughput": 40,
+    "wholePieceThreshold": 1
+  },
+  "improvements": {
+    "maxLevelPerImprovement": 5,
+    "costMultiplierPerPurchase": 1.5,
+    "baseCosts": {
+      "5s": 50,
+      "kanban": 200,
+      "poka": 500,
+      "tpm": 1500,
+      "andon": 4000,
+      "jidoka": 7500,
+      "heijunka": 10000,
+      "jit": 25000
+    }
+  },
+  "improvementPerLevelEffects": {
+    "5s": { "defectPctDelta": -5, "velocityMultDelta": 0.1 },
+    "kanban": { "velocityMultDelta": 0.2 },
+    "poka": { "defectPctDelta": -15 },
+    "tpm": { "defectPctDelta": -10, "oeePctDelta": 15 },
+    "andon": { "throughputMultDelta": 0.08 },
+    "jidoka": { "defectPctDelta": -40, "velocityMultDelta": -0.1 },
+    "heijunka": { "oeePctDelta": 25 },
+    "jit": { "velocityMultDeltaWhenDefectBelowThreshold": 0.5 }
+  },
+  "api": {
+    "autosaveIntervalMs": 60000,
+    "rankingPollIntervalMs": 5000,
+    "defaultApiOrigin": "http://localhost:3000"
+  },
+  "initialProgress": {
+    "kaizen": 0,
+    "totalGoodProduced": 0,
+    "totalDefects": 0,
+    "accumulatorMs": 0,
+    "productionCarry": 0
+  },
+  "ui": {
+    "productionBurstClearMs": 520,
+    "defectsMetricsWindowSeconds": 60,
+    "goodSparklineMaxPoints": 120,
+    "defectSparklineMaxPoints": 60,
+    "sparklineViewBoxWidth": 300,
+    "sparklineViewBoxHeight": 72,
+    "sparklineVerticalPadding": 8,
+    "sparklineBottomPadding": 4
+  }
+}
